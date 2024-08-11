@@ -5,17 +5,16 @@ const port = 5000
 
 const connection = require("./connection")
 
+const UserRouter = require("./routers/userRouter")
+
 app.use(bodyParser.json())
 
-app.get("/", (req, res) => {
-    
-    res.send("hello")
-})
+app.use("/user", UserRouter)
 
-app.post("/post", (req, res) => {
-    console.log(req.body);
-    res.send("post method")
-})
+
+
+
+
 
 app.listen(port, (() => {
     console.log("server started at", port);
