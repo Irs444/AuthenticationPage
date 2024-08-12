@@ -1,8 +1,11 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 
 const LoginScreen = ({navigation}) => {
+
+    const [hidePass, setHidePass] = useState(true)
+
     return (
         <View style={{ margin: 10 }}>
             
@@ -11,7 +14,8 @@ const LoginScreen = ({navigation}) => {
                 <View style={styles.container}>
 
                     <TextInput style={styles.inputText} label="Email" mode="outlined" />
-                    <TextInput style={styles.inputText} label="Password" mode="outlined" />
+                    <TextInput style={styles.inputText} label="Password" mode="outlined" secureTextEntry={hidePass}
+                    right={<TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />}/>
 
                     <View>
                         <Button style={{ marginTop: 10, fontWeight: "bold", fontSize: 20 }} mode='contained' >Sign in</Button>
