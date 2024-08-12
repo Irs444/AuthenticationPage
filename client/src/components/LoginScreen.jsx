@@ -1,10 +1,42 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {  StyleSheet, Text,  View } from 'react-native'
 import React, { useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
+
+
 
 const LoginScreen = ({navigation}) => {
 
     const [hidePass, setHidePass] = useState(true)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+  const Submit = async() => {
+
+    const res = await fetch("http://192.168.29.21:5000/user/signin",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            email,
+            password
+        })
+    })
+    console.log(res.status);
+    
+    if(res.status === 200){
+        const data = await res.json()
+        console.log(data);
+         navigation.navigate("Home")
+  }else{
+        alert("Invalid data")
+  }
+}
+    
+
+   
+
+    
 
     return (
         <View style={{ margin: 10 }}>
@@ -13,12 +45,17 @@ const LoginScreen = ({navigation}) => {
                 <Text style={{ marginTop: 10, fontSize: 15 }}>Login to your account</Text>
                 <View style={styles.container}>
 
-                    <TextInput style={styles.inputText} label="Email" mode="outlined" />
-                    <TextInput style={styles.inputText} label="Password" mode="outlined" secureTextEntry={hidePass}
-                    right={<TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />}/>
+
+                    <TextInput style={styles.inputText} label="Email" mode='outlined' value={email} onChangeText={(text) => setEmail(text)} />
+                    <TextInput style={styles.inputText}label="Email" mode='outlined' secureTextEntry={hidePass}
+                    onChangeText={(text) => setPassword(text)}
+                    value={password}
+                     right={<TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />}
+                    />
 
                     <View>
-                        <Button style={{ marginTop: 10, fontWeight: "bold", fontSize: 20 }} mode='contained' >Sign in</Button>
+                        <Button onPress={() => Submit()} style={{ marginTop: 10, fontWeight: "bold", fontSize: 20 }} mode='contained' >Sign in</Button>
+                       
                     </View>
                 </View>
 
@@ -41,6 +78,7 @@ const styles = StyleSheet.create({
     },
     inputText: {
         marginBottom: 15,
-        backgroundColor: "white"
+        backgroundColor: "white",
+       
     }
 })
