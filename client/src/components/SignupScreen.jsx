@@ -1,14 +1,17 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { ScrollView, StyleSheet, Text,  View } from 'react-native'
 import React, { useState } from 'react'
-import { Button } from 'react-native-paper'
+import { Button, TextInput } from 'react-native-paper'
 
 
 const SignupScreen = ({navigation}) => {
 
-    const[hidePass , setHidePass] = useState(true)
+    // const[hidePass , setHidePass] = useState(true)
 
     return (
         <View style={{margin:10}}>
+            <ScrollView>
+
+         
             <Text style={{ marginTop: 100, fontSize:40, fontWeight:"bold" }}>Signup Here</Text>
             <Text style={{marginTop:10, fontSize:15}}>Create  your new account</Text>
             <View style={styles.container}>
@@ -16,13 +19,13 @@ const SignupScreen = ({navigation}) => {
                 <TextInput style={styles.inputText} label="Email" mode="outlined" />
                 <TextInput style={styles.inputText} label="Password" mode="outlined" secureTextEntry={true} 
                  />
-                <TextInput style={styles.inputText} label="Confirm password" mode="outlined" secureTextEntry="true"  />
+                <TextInput style={styles.inputText} label="Confirm password" mode="outlined" secureTextEntry={true}  />
                 <View>
                     <Button style={{ marginTop: 10, fontWeight:"bold", fontSize:20}}  mode='contained' >Sign up</Button>
                 </View>
             </View>
             <Text style={{marginTop:25,fontSize:15, textAlign:"center"}}>Already a member <Text onPress={() => navigation.navigate("Login")} style={{color:"darkviolet", fontWeight:"bold"}}>Sign in</Text> </Text>
-
+            </ScrollView>
         </View>
     )
 }
