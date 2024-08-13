@@ -1,14 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
-import useUserContext from '../context/userContext'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
 
 
 const LoginScreen = ({ navigation }) => {
-
-    const { setLoggedIn } = useUserContext()
 
     const [hidePass, setHidePass] = useState(true)
     const [email, setEmail] = useState('')
@@ -29,25 +24,14 @@ const LoginScreen = ({ navigation }) => {
         console.log(res.status);
 
         if (res.status === 200) {
-            setLoggedIn(true)
             const data = await res.json()
             console.log(data);
-            AsyncStorage.setItem("isLoggedin", true)
-            if (data.role === "admin") {
-                AsyncStorage.setItem("admin", JSON.stringify(data))
-                navigation.navigate("AddProduct")
-            } else {
-                AsyncStorage.setItem("user", JSON.stringify(data))
-                navigation.navigate("Product")
-            }
+            navigation.navigate("AddProduct")
+
         } else {
             alert("Invalid data")
         }
     }
-
-
-
-
 
 
     return (
