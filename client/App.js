@@ -1,5 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import SignupScreen from './src/components/SignupScreen';
 import LoginScreen from './src/components/LoginScreen';
 import LoadingScreen from './src/components/LoadingScreen';
@@ -16,20 +14,21 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     < >
-      <NavigationContainer>
-        <UserProvider>
-        <Stack.Navigator initialRouteName='Home'>
+      <UserProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Home'>
 
-          <Stack.Screen name='Home' component={HomeScreen} />
-          <Stack.Screen name='Signup' component={SignupScreen} />
-          <Stack.Screen name='Login' component={LoginScreen} />
-          <Stack.Screen name='Loading' component={LoadingScreen} />
-          <Stack.Screen name='AddProduct' component={AddScreen} />
-          <Stack.Screen name='Product' component={ProductScreen} />
+            <Stack.Screen name='Home' component={HomeScreen} />
+            <Stack.Screen name='Signup' component={SignupScreen} />
+            <Stack.Screen name='Login' component={LoginScreen} />
+            <Stack.Screen name='Loading' component={LoadingScreen} />
+            <Stack.Screen name='AddProduct' component={AddScreen} />
+            <Stack.Screen name='Product' component={ProductScreen} />
 
-        </Stack.Navigator>
-        </UserProvider>
-      </NavigationContainer>
+          </Stack.Navigator>
+
+        </NavigationContainer>
+      </UserProvider>
 
     </>
   );

@@ -43,7 +43,7 @@ const LoginScreen = ({ navigation }) => {
 
 
                 <TextInput style={styles.inputText} label="Email" mode='outlined' value={email} onChangeText={(text) => setEmail(text)} />
-                <TextInput style={styles.inputText} label="Email" mode='outlined' secureTextEntry={hidePass}
+                <TextInput style={styles.inputText} label="Password" mode='outlined' secureTextEntry={hidePass}
                     onChangeText={(text) => setPassword(text)}
                     value={password}
                     right={<TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />}
