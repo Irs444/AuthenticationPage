@@ -1,6 +1,6 @@
-import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Button, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Button, IconButton } from 'react-native-paper'
+
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -13,7 +13,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.text}>Best Mobile App Template for Your Bussiness</Text>
               <Text style={styles.text1}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, optio?</Text>
               <View style={styles.btn}>
-                <Button onPress={() => navigation.navigate("Login")} mode='outlined' style={{color:"white"}} >Get Started</Button>
+               <Button  title='Get Started' color="indigo" onPress={() => navigation.navigate("Signup")} />
               </View>
             </View>
           </ImageBackground>

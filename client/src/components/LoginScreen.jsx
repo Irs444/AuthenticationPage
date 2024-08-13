@@ -1,66 +1,78 @@
-import {  StyleSheet, Text,  View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
+import useUserContext from '../context/userContext'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
+
+    const { setLoggedIn } = useUserContext()
 
     const [hidePass, setHidePass] = useState(true)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-  const Submit = async() => {
+    const Submit = async () => {
 
-    const res = await fetch("http://192.168.29.21:5000/user/signin",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            email,
-            password
+        const res = await fetch("http://192.168.29.21:5000/user/signin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
         })
-    })
-    console.log(res.status);
-    
-    if(res.status === 200){
-        const data = await res.json()
-        console.log(data);
-         navigation.navigate("Home")
-  }else{
-        alert("Invalid data")
-  }
-}
-    
+        console.log(res.status);
 
-   
+        if (res.status === 200) {
+            setLoggedIn(true)
+            const data = await res.json()
+            console.log(data);
+            AsyncStorage.setItem("isLoggedin", true)
+            if (data.role === "admin") {
+                AsyncStorage.setItem("admin", JSON.stringify(data))
+                navigation.navigate("AddProduct")
+            } else {
+                AsyncStorage.setItem("user", JSON.stringify(data))
+                navigation.navigate("Product")
+            }
+        } else {
+            alert("Invalid data")
+        }
+    }
 
-    
+
+
+
+
 
     return (
         <View style={{ margin: 10 }}>
-            
-          <Text style={{ marginTop: 100, fontSize: 40, fontWeight: "bold" }}>Welcome</Text>
-                <Text style={{ marginTop: 10, fontSize: 15 }}>Login to your account</Text>
-                <View style={styles.container}>
+
+            <Text style={{ marginTop: 100, fontSize: 40, fontWeight: "bold" }}>Welcome</Text>
+            <Text style={{ marginTop: 10, fontSize: 15 }}>Login to your account</Text>
+            <View style={styles.container}>
 
 
-                    <TextInput style={styles.inputText} label="Email" mode='outlined' value={email} onChangeText={(text) => setEmail(text)} />
-                    <TextInput style={styles.inputText}label="Email" mode='outlined' secureTextEntry={hidePass}
+                <TextInput style={styles.inputText} label="Email" mode='outlined' value={email} onChangeText={(text) => setEmail(text)} />
+                <TextInput style={styles.inputText} label="Email" mode='outlined' secureTextEntry={hidePass}
                     onChangeText={(text) => setPassword(text)}
                     value={password}
-                     right={<TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />}
-                    />
+                    right={<TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />}
+                />
 
-                    <View>
-                        <Button onPress={() => Submit()} style={{ marginTop: 10, fontWeight: "bold", fontSize: 20 }} mode='contained' >Sign in</Button>
-                       
-                    </View>
+                <View>
+                    <Button onPress={() => Submit()} style={{ marginTop: 10, fontWeight: "bold", fontSize: 20 }} mode='contained' >Sign in</Button>
+
                 </View>
+            </View>
 
-                <Text style={{ marginTop: 25, fontSize: 15, textAlign: "center" }}>Create an account? <Text onPress={() => navigation.navigate("Signup")} style={{ color: "darkviolet", fontWeight: "bold" }}>Sign up</Text> </Text>
-           
+            <Text style={{ marginTop: 25, fontSize: 15, textAlign: "center" }}>Create an account? <Text onPress={() => navigation.navigate("Signup")} style={{ color: "darkviolet", fontWeight: "bold" }}>Sign up</Text> </Text>
+
         </View>
     )
 }
@@ -79,6 +91,6 @@ const styles = StyleSheet.create({
     inputText: {
         marginBottom: 15,
         backgroundColor: "white",
-       
+
     }
 })

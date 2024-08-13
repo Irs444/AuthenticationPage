@@ -65,7 +65,7 @@ const SignupScreen = ({ navigation }) => {
                     right={<TextInput.Icon icon="eye" onPress={() => setHidePass(!hidePass)} />}
                 />
                 <View>
-                    <Button onPress={() => Submit()} style={{ marginTop: 10, fontWeight: "bold", fontSize: 20 }} mode='contained' >Sign up</Button>
+                    <Button onPress={() => Submit()}  mode='contained' >Sign up</Button>
                 </View>
             </View>
             <Text style={{ marginTop: 25, fontSize: 15, textAlign: "center" }}>Already a member <Text onPress={() => navigation.navigate("Login")} style={{ color: "darkviolet", fontWeight: "bold" }}>Sign in</Text> </Text>
