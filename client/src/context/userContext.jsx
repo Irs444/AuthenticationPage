@@ -1,10 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useState, React } from "react";
 
 const UserContext = createContext();
 
 const UserProvider = ({children}) => {
 
-    const [value , setValue] = useState(0)
+    const [value, setValue] = useState(0);
+
+   
    
 
     return(

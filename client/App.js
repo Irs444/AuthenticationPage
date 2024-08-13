@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    < >
+    
       <UserProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Home'>
@@ -30,7 +30,7 @@ export default function App() {
         </NavigationContainer>
       </UserProvider>
 
-    </>
+    
   );
 }
 
