@@ -26,7 +26,6 @@ const SignupScreen = ({ navigation }) => {
                 confirmPassword
             })
         })
-
         const data = await res.json()
         console.log(data);
 
@@ -43,7 +42,7 @@ const SignupScreen = ({ navigation }) => {
 
     return (
         <View style={{ margin: 10 }}>
-
+<ScrollView>
             <Text style={{ marginTop: 70, fontSize: 40, fontWeight: "bold" }}>Signup Here</Text>
             <Text style={{ marginTop: 10, fontSize: 15 }}>Create  your new account</Text>
             <View style={styles.container}>
@@ -70,7 +69,7 @@ const SignupScreen = ({ navigation }) => {
                 </View>
             </View>
             <Text style={{ marginTop: 25, fontSize: 15, textAlign: "center" }}>Already a member <Text onPress={() => navigation.navigate("Login")} style={{ color: "darkviolet", fontWeight: "bold" }}>Sign in</Text> </Text>
-
+            </ScrollView>
         </View>
     )
 }
