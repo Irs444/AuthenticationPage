@@ -1,5 +1,6 @@
-import { Button, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Button, ImageBackground,  StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+
 
 
 const HomeScreen = ({ navigation }) => {
@@ -10,6 +11,7 @@ const HomeScreen = ({ navigation }) => {
       <ImageBackground source={require("../../assets/download.jpeg")} resizeMode='cover' style={styles.img}>
 
         <View style={styles.text_container}>
+         
           <Text style={styles.text}>Best Mobile App Template for Your Bussiness</Text>
           <Text style={styles.text1}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, optio?</Text>
           <View style={styles.btn}>
