@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 
@@ -27,9 +28,10 @@ const SignupScreen = ({ navigation }) => {
             })
         })
         const data = await res.json()
-        console.log(data);
-
+        
         if (res.status === 200) {
+            AsyncStorage.setItem("data", JSON.stringify(data))
+            console.log(data);
             navigation.navigate("Login")
         } else {
             alert("Invalid data")

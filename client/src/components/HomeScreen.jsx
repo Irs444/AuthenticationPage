@@ -1,7 +1,9 @@
 import { Button, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
+
 
 const HomeScreen = ({ navigation }) => {
+
   return (
     <View style={styles.container}>
 

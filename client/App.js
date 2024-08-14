@@ -14,8 +14,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     
-      <UserProvider>
-        <NavigationContainer>
+    <NavigationContainer>
+          <UserProvider>
           <Stack.Navigator initialRouteName='Home'>
 
             <Stack.Screen name='Home' component={HomeScreen} />
@@ -27,8 +27,8 @@ export default function App() {
 
           </Stack.Navigator>
 
-        </NavigationContainer>
       </UserProvider>
+        </NavigationContainer>
 
     
   );
