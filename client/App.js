@@ -85,11 +85,20 @@ export default function App() {
     <NavigationContainer>
       <UserProvider>
         <Tab.Navigator screenOptions={screenOptions}>
-          <Tab.Screen name='Home' component={HomeScreen} />
+          {
+            tabConfig.map(routeConfig => (
+              <Tab.Screen
+              key={routeConfig.name}
+              name={routeConfig.name}
+              component={routeConfig.component}
+              />
+            ))
+          }
+          {/* <Tab.Screen name='Home' component={HomeScreen} />
           <Tab.Screen name='AddProduct' component={AddScreen} />
           <Tab.Screen name='Product' component={ProductScreen} />
           <Tab.Screen name='Signup' component={SignupScreen} />
-          <Tab.Screen name='Login' component={LoginScreen} />
+          <Tab.Screen name='Login' component={LoginScreen} /> */}
           {/* <Tab.Screen name='Loadingg' component={LoadingScreen} /> */}
          
         </Tab.Navigator>
