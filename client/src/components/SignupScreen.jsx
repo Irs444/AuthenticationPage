@@ -2,10 +2,13 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native'
 
 
 
-const SignupScreen = ({ navigation }) => {
+const SignupScreen = () => {
+
+    const navigation = useNavigation()
 
     const [hidePass, setHidePass] = useState(true)
     const [name, setName] = useState('')

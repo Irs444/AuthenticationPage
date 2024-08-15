@@ -3,9 +3,12 @@ import React, { useContext, useState } from 'react'
 import { Button, TextInput } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { UserContext } from '../context/userContext'
+import { useNavigation } from '@react-navigation/native'
 
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
+
+    const navigation = useNavigation()
 
     const { setLoggedIn } = useContext(UserContext)
     const [hidePass, setHidePass] = useState(true)
@@ -36,7 +39,7 @@ const LoginScreen = ({ navigation }) => {
                 navigation.navigate("AddProduct")
             } else {
                 AsyncStorage.setItem("user", JSON.stringify(data))
-                navigation.navigate("Home")
+                navigation.navigate("Product")
             }
 
 
