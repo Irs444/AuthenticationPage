@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { UserContext } from '../context/userContext'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { TextInput } from 'react-native-paper'
 
 
 
@@ -15,8 +16,8 @@ const AddScreen = () => {
   const handleLogout = () => {
     if (loggedIn) {
       return (
-        <View>
-          <Button title='Logout' onPress={logout} />
+        <View style={{marginVertical:30, marginHorizontal:100}}>
+          <Button title='Logout' onPress={logout} color={"red"} />
         </View>
       )
     } else {
@@ -27,41 +28,30 @@ const AddScreen = () => {
   }
 
 
-  // const fetchData = async () => {
-  //   try {
-  //     const storedData = await AsyncStorage.getItem("data");
-  //     setData(storedData);
-  //     const response = await fetch("http://192.168.29.21:5000/", {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${storedData}`,
-  //       },
-  //     });
-
-  //     const result = await response.json();
-  //     console.log(result);
-
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, [])
 
 
 
   return (
     <View>
-      <Text style={{ textAlign: "center", fontSize: 30, marginTop: 40 }}>AddScreen</Text>
+      <Text style={{ textAlign: "center", fontSize: 30, marginTop: 40 }}>AddProduct</Text>
       <View style={{ marginHorizontal: 20 }}>
+        <View style={styles.form}>
+          <Text style={styles.input}>Product Name</Text>
+          <TextInput label="Product Name" mode='outlined' style={styles.inputText} />
+          <Text style={styles.input}>Category</Text>
+          <TextInput label="Category" mode='outlined' style={styles.inputText} />
+          <View style={{ marginVertical: 10 }}>
+            <Button title='Add Image' color={"darkviolet"} />
+          </View>
+          <View style={{ marginVertical: 10 }}>
+            <Button title='Submit' color={"mediumorchid"} />
+          </View>
+        </View>
         {
           handleLogout()
         }
       </View>
-     
+
 
     </View>
   )
@@ -69,4 +59,26 @@ const AddScreen = () => {
 
 export default AddScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  form: {
+    // borderWidth: 1,
+    backgroundColor: "white",
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginTop: 20,
+    elevation: 15
+
+  },
+  input: {
+    fontSize: 20,
+    marginBottom: 10,
+
+  },
+  inputText: {
+    backgroundColor: "white",
+    marginBottom: 10,
+  }
+
+
+})

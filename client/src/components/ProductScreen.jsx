@@ -1,8 +1,25 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-native-paper'
+import { UserContext } from '../context/userContext'
 
 const ProductScreen = () => {
+
+  const { logout, loggedIn } = useContext(UserContext)
+  
+ const handleLogout = () => {
+    if (loggedIn) {
+      return (
+        <View>
+          <Button title='Logout' onPress={logout} />
+        </View>
+      )
+    } else {
+      return <View>
+        <Text>Not Logged In</Text>
+      </View>
+    }
+  }
   return (
     <View>
       <View style={styles.btn} >
@@ -28,6 +45,10 @@ const ProductScreen = () => {
             <View style={styles.body}>
               <Image source={require("../../assets/lion.jpeg")} style={{ height: 150, width: 150, objectFit: 'fill' }} />
             </View>
+          </View>
+
+          <View>
+            {handleLogout()}
           </View>
         
 
